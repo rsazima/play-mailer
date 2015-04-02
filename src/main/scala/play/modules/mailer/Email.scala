@@ -128,17 +128,17 @@ case class Email(subject: String, from: EmailAddress, text: String, htmlText: Op
 }
 
 object Email {
-  def apply(subject: String, from: EmailAddress, text: String, htmlText: String): Email =
-    new Email(subject, from, text, Some(htmlText))
+  def apply(subject: String, from: EmailAddress, text: String, htmlText: Option[String] = None): Email =
+    new Email(subject, from, text, htmlText)
 
-  def apply(subject: String, from: EmailAddress, text: String, htmlText: String, replyTo: Option[EmailAddress]): Email =
-    new Email(subject, from, text, Some(htmlText), replyTo)
+  def apply(subject: String, from: EmailAddress, text: String, htmlText: Option[String] = None, replyTo: Option[EmailAddress]): Email =
+    new Email(subject, from, text, htmlText, replyTo)
 
-  def apply(subject: String, from: EmailAddress, text: String, htmlText: String, replyTo: Option[EmailAddress], recipients: Seq[Recipient]): Email =
-    new Email(subject, from, text, Some(htmlText), replyTo, recipients)
+  def apply(subject: String, from: EmailAddress, text: String, htmlText: Option[String] = None, replyTo: Option[EmailAddress], recipients: Seq[Recipient]): Email =
+    new Email(subject, from, text, htmlText, replyTo, recipients)
 
-  def apply(subject: String, from: EmailAddress, text: String, htmlText: String, replyTo: Option[EmailAddress], recipients: Seq[Recipient], attachments: Seq[Attachment]): Email =
-    new Email(subject, from, text, Some(htmlText), replyTo, recipients, attachments)
+  def apply(subject: String, from: EmailAddress, text: String, htmlText: Option[String] = None, replyTo: Option[EmailAddress], recipients: Seq[Recipient], attachments: Seq[Attachment]): Email =
+    new Email(subject, from, text, htmlText, replyTo, recipients, attachments)
 }
 
 case class EmailAddress(name: String, address: String)
